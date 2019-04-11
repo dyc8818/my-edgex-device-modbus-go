@@ -1,0 +1,65 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+*.log
+
+.idea/
+vendor/
+cmd/device-modbus
+glide.lock
+go.sum
+
+.idea/
+vendor
+*.exe
+glide.lock
+*.DS_Store
+docker/docker-compose.yml
+.project
+.vscode/
+go.sum
+
+# binary files
+cmd/config-seed/config-seed
+cmd/core-command/core-command
+cmd/core-data/core-data
+cmd/core-metadata/core-metadata
+cmd/export-client/export-client
+cmd/export-distro/export-distro
+cmd/support-logging/support-logging
+cmd/support-notifications/support-notifications
+cmd/sys-mgmt-agent/sys-mgmt-agent
+cmd/support-scheduler/support-scheduler
+cmd/sys-mgmt-executor/sys-mgmt-executor
+docs/_build/
+
+# log dirs
+**/logs
+
+# snap files
+*.snap
+*.bz2
+*.pyc
+parts/*
+prime/*
+stage/*
+snap/.snapcraft/*
+go.sum
+
+
+.idea/
+vendor
+*.exe
+glide.lock
+*.DS_Store
+cmd/edgex-ui-go/edgex-ui-go

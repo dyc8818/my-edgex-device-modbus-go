@@ -1,0 +1,75 @@
+[Service]
+Host = "localhost"
+Port = 49991
+ConnectRetries = 3
+Labels = []
+OpenMsg = "device modbus started"
+ReadMaxLimit = 256
+Timeout = 5000
+EnableAsyncReadings = true
+AsyncBufferSize = 16
+
+[Registry]
+Host = "localhost"
+Port = 8500
+CheckInterval = "10s"
+FailLimit = 3
+FailWaitTime = 10
+Type = "consul"
+
+[Logging]
+EnableRemote = false
+File = "./device-Modbus.log"
+
+[Writable]
+LogLevel = "INFO"
+
+[Clients]
+  [Clients.Data]
+  Name = "edgex-core-data"
+  Protocol = "http"
+  Host = "localhost"
+  Port = 48080
+  Timeout = 50000
+
+  [Clients.Metadata]
+  Name = "edgex-core-metadata"
+  Protocol = "http"
+  Host = "localhost"
+  Port = 48081
+  Timeout = 50000
+
+  [Clients.Logging]
+  Name = "edgex-support-logging"
+  Protocol = "http"
+  Host = "localhost"
+  Port = 48061
+
+[Device]
+  DataTransform = true
+  InitCmd = ""
+  InitCmdArgs = ""
+  MaxCmdOps = 128
+  MaxCmdValueLen = 256
+  RemoveCmd = ""
+  RemoveCmdArgs = ""
+  ProfilesDir = "."
+
+[[DeviceList]]
+  Name = "temp and humidity device"
+  Profile = "temperature and humidity sensor profile"
+  Description = "This device is a temp sensor."
+  labels = [ "temp","Modbus RTU" ]
+  [DeviceList.Protocols]
+    [DeviceList.Protocols.modbus-rtu]
+       Address = "/dev/ttyUSB0"
+       BaudRate = "9600"
+       DataBits = "8"
+       StopBits = "1"
+       Parity = "N"
+       UnitID = "1"
+#  [DeviceList.Addressable]
+#    name = "temp address"
+#    Protocol = "OTHER"
+#    Address = "/dev/ttyUSB0,9600,8,1,0"
+#    Path = "1"  

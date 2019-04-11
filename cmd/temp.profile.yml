@@ -1,0 +1,41 @@
+name: "temp profile"
+manufacturer: "xxx"
+model: "ModBus-1"
+labels:
+- "temperature"
+description: "Temperature sensor profile"
+deviceResources:
+-
+  name: TemperatureDeg
+  description: "sensor temperature"
+  attributes:
+    { primaryTable: "HOLDING_REGISTERS", startingAddress: "1" }
+  properties:
+    value:
+      { type: "INT32", size: "2", scale: "1", readWrite: "R", defaultValue: "0", mask: "0000ffff" }
+    units:
+      { type: "String", readWrite: "R", defaultValue: "" }
+ 
+ 
+
+resources:
+-
+  name: "TemperatureDeg"
+  get:
+  - { index: "1", operation: "get", object: "TemperatureDeg", parameter: "TemperatureDeg", property: "value" }
+ 
+commands:
+-
+  name: TemperatureDeg
+  get:
+    path: "/api/v1/device/{deviceId}/TemperatureDeg"
+    responses:
+    -
+      code: "200"
+      description: Get the temperature in degrees F"
+      expectedValues: ["TemperatureDeg"]
+    -
+      code: "503"
+      description: "service unavailable"
+      expectedValues: []
+ 
